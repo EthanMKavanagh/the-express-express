@@ -22,7 +22,9 @@ const trains = [
 // Create your `/train` route here
 // when a user visits localhost:5000/train
 // this route should return the array of trains
-
+app.get( `/train`, function( req, res ){
+    res.send( trains );
+} );
 
 // Create your `/first-train` route here
 // when a user visits localhost:5000/first-train
