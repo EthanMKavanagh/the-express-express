@@ -31,10 +31,10 @@ app.get( `/train`, function( req, res ){
 // Create your `/first-train` route here
 // when a user visits localhost:5000/first-train
 // this route should return the first train in the array
-/*app.get( `/first-train`, function( req, res ){
-    let firstTrain = trains.indexOf[ 0 ];
+app.get( `/first-train`, function( req, res ){
+    let firstTrain = trains[ 0 ];
     res.send( firstTrain );
-} ); Not working */ 
+} ); 
 
 // Create your `/last-train` route here
 // when a user visits localhost:5000/last-train
