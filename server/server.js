@@ -9,6 +9,8 @@ app.listen( 5000, function(){
     console.log( `I'm listening on 5000` );
 } );
 
+app.use( express.static( `server/public` ) );
+
 // This is your array of trains
 const trains = [
     { name: 'Thomas', color: 'Blue' },
@@ -29,12 +31,18 @@ app.get( `/train`, function( req, res ){
 // Create your `/first-train` route here
 // when a user visits localhost:5000/first-train
 // this route should return the first train in the array
-
+/*app.get( `/first-train`, function( req, res ){
+    let firstTrain = trains.indexOf[ 0 ];
+    res.send( firstTrain );
+} ); Not working */ 
 
 // Create your `/last-train` route here
 // when a user visits localhost:5000/last-train
 // this route should return the last train in the array
-
+app.get( `/last-train`, function( req, res ){
+    let lastTrain = trains[ trains.length - 1 ];
+    res.send( lastTrain );
+} );
 
 
 // -------- STRETCH -----//
