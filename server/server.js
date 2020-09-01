@@ -1,8 +1,13 @@
 // bring express into your project
 // you will need to `npm init` and `npm install express` first
-
+const express = require( `express` );
 
 // create your express app
+const app = express();
+
+app.listen( 5000, function(){
+    console.log( `I'm listening on 5000` );
+} );
 
 // This is your array of trains
 const trains = [
