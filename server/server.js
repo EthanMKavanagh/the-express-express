@@ -7,6 +7,9 @@ const app = express();
 
 app.use( express.static( `server/public` ) );
 
+// creating moment
+var moment = require('moment');
+
 // This is your array of trains
 let trains = require( `./modules/trains.js` );
 
@@ -66,6 +69,14 @@ app.get( `/random`, function( req, res ){
     let nextTrain = getNextTrain();
     res.send( nextTrain );
 } );
+
+// `/next` using moment
+app.get( `/next`, function( req, res ){
+    let time = moment().format('MMMM Do YYYY, h:mm:ss a');
+    // How to add 5 min to `time`?
+    res.send( time );
+} );
+
 
 // -------- BASE -----//
 
