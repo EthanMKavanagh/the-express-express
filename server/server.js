@@ -5,19 +5,10 @@ const express = require( `express` );
 // create your express app
 const app = express();
 
-app.listen( 5000, function(){
-    console.log( `I'm listening on 5000` );
-} );
-
 app.use( express.static( `server/public` ) );
 
 // This is your array of trains
-const trains = [
-    { name: 'Thomas', color: 'Blue' },
-    { name: 'Gordon', color: 'Blue' },
-    { name: 'Henry', color: 'Green' },
-    { name: 'James', color: 'Red' }
-];
+let trains = require( `./modules/trains.js` );
 
 // -------- BASE -----//
 
@@ -52,13 +43,33 @@ app.get( `/last-train`, function( req, res ){
 // this route should return the number of trains in the array
 // NOTE: express doesn't like it when you return numbers
 // instead, return an object like { totalCount: 4 }
-
+app.get( `/count`, function( req, res ){
+    let trainsNumber = trains.length
+    let totalCount = { count: trainsNumber }
+    res.send( totalCount ); 
+} );
 
 // Create your `/random` route here
 // when a user visits localhost:5000/random
 // this route should return a single train at random
+let i = 0;
+function getNextTrain(){
+    let nextTrain = trains[ i ];
+    i++
+    if( i >= trains.length ){
+        i = 0;
+    }
+    return nextTrain;
+}
 
+app.get( `/random`, function( req, res ){
+    let nextTrain = getNextTrain();
+    res.send( nextTrain );
+} );
 
 // -------- BASE -----//
 
 // Don't forget to start your app by running `.listen()`
+app.listen( 5000, function(){
+    console.log( `I'm listening on 5000` );
+} );
